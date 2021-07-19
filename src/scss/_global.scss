@@ -14,11 +14,11 @@ body {
 }
 
 .footer {
-    flex: 0 0 auto;
+    flex: 0 0 auto; //footer прижимаем к низу страницы
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 0 15px;
 }
