@@ -1,11 +1,24 @@
-@mixin font-face($font-family, $url, $weight) {
-    @font-face {
-        font-family: '#{$font-family}';
-        src: url('../fonts/#{url}.woff2') format('woff2'),
-        url('../#{url}.woff') format('woff');
-        font-weight: #{$weight};
-        font-display: swap;
-        font-style: normal;
-    }
+html,
+body {
+    height: 100%;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.main {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex: 0 0 auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
