@@ -202,7 +202,8 @@ const clean = () => {
 function scriptsSlick() {
     return src([
         /* 'node_modules/jquery/src/jquery.js',
-        'node_modules/slick-carousel/slick/slick.js', */
+        'node_modules/slick-carousel/slick/slick.js',
+        'node_modules/mixitup/dist/mixitup.js' */
         'src/js/main.js'
     ])
     .pipe(concat('main.min.js'))
