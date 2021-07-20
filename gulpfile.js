@@ -201,8 +201,8 @@ const clean = () => {
 
 function scriptsSlick() {
     return src([
-        'node_modules/jquery/src/jquery.js',
-        'node_modules/slick-carousel/slick/slick.js',
+        /* 'node_modules/jquery/src/jquery.js',
+        'node_modules/slick-carousel/slick/slick.js', */
         'src/js/main.js'
     ])
     .pipe(concat('main.min.js'))
@@ -239,7 +239,7 @@ exports.styles = styles;
 exports.watchFiles = watchFiles;
 exports.fileinclude = htmlInclude;
 
-exports.default = series(clean, parallel(htmlInclude, /* scripts, */ scriptsSlick, fonts, resources, imgToApp, svgSprites), fontsStyle, styles, watchFiles);
+exports.default = series(clean, parallel(htmlInclude, /* scripts, */  fonts, resources, imgToApp, svgSprites), scriptsSlick, fontsStyle, styles, watchFiles);
 
 //gulp finaly build
 
@@ -306,8 +306,8 @@ const images = () => {
 
 function scriptsSlick() {
     return src([
-        'node_modules/jquery/src/jquery.js',
-        'node_modules/slick-carousel/slick/slick.js',
+        /* 'node_modules/jquery/src/jquery.js',
+        'node_modules/slick-carousel/slick/slick.js', */
         'src/js/main.js'
     ])
     .pipe(concat('main.min.js'))
