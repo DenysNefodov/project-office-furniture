@@ -370,5 +370,33 @@
         font-weight: 600;
         color: #707070;
     }
+}
 
+.decor {
+    padding: 170px 0 155px;
+    background-image: url(../img/bg/bd-decor.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    &__title {
+        max-width: 540px;
+        font-size: 60px;
+        line-height: 80px;
+        padding-bottom: 22px;
+        margin-bottom: 22px;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 200px;
+            background-color: #6D7278;
+            height: 1px;
+        }
+    }
+
+    &__text {
+        max-width: 540px;
+    }
 }
