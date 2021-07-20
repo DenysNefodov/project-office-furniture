@@ -13,4 +13,10 @@ $(function () {
         fade:true,
         autoplay: true
     });
+
+    let mixer = mixitup('.gallery__inner', {
+        load: {
+            filter: '.category-office-furniture'
+        }
+    });
 })
