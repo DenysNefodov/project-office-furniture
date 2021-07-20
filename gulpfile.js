@@ -12,6 +12,7 @@ const ttf2woff = require('gulp-ttf2woff');
 const ttf2woff2 = require('gulp-ttf2woff2');
 const fs = require ('fs');
 const del = require ('del');
+const concat = require('gulp-concat');
 const webpack = require ('webpack');
 const webpackStream = require('webpack-stream');
 const uglify = require('gulp-uglify-es').default;
@@ -166,36 +167,48 @@ const clean = () => {
 
 // ф-я через Вебпак, которая собирает файлы js
 
-const scripts = () => {
-	return src('./src/js/main.js')
-		.pipe(webpackStream({
-			mode: 'development',
-			output: {
-				filename: 'main.js',
-			},
-			module: {
-				rules: [{
-					test: /\.m?js$/,
-					exclude: /(node_modules|bower_components)/,
-					use: {
-						loader: 'babel-loader',
-						options: {
-							presets: ['@babel/preset-env']
-						}
-					}
-				}]
-			},
-		}))
-		.on('error', function (err) {
-			console.error('WEBPACK ERROR', err);
-			this.emit('end'); // Don't stop the rest of the task
-		})
+// const scripts = () => {
+// 	return src('./src/js/main.js')
+// 		.pipe(webpackStream({
+// 			mode: 'development',
+// 			output: {
+// 				filename: 'main.js',
+// 			},
+// 			module: {
+// 				rules: [{
+// 					test: /\.m?js$/,
+// 					exclude: /(node_modules|bower_components)/,
+// 					use: {
+// 						loader: 'babel-loader',
+// 						options: {
+// 							presets: ['@babel/preset-env']
+// 						}
+// 					}
+// 				}]
+// 			},
+// 		}))
+// 		.on('error', function (err) {
+// 			console.error('WEBPACK ERROR', err);
+// 			this.emit('end'); // Don't stop the rest of the task
+// 		})
 
-		.pipe(sourcemaps.init())
-		.pipe(uglify().on("error", notify.onError()))
-		.pipe(sourcemaps.write('.'))
-		.pipe(dest('./app/js'))
-		.pipe(browserSync.stream());
+// 		.pipe(sourcemaps.init())
+// 		.pipe(uglify().on("error", notify.onError()))
+// 		.pipe(sourcemaps.write('.'))
+// 		.pipe(dest('./app/js'))
+// 		.pipe(browserSync.stream());
+// }
+
+function scriptsSlick() {
+    return src([
+        'node_modules/jquery/src/jquery.js',
+        'node_modules/slick-carousel/slick/slick.js',
+        'src/js/main.js'
+    ])
+    .pipe(concat('main.min.js'))
+    .pipe(uglify())
+    .pipe(dest('app/js'))
+    .pipe(browserSync.stream())
 }
 
 // автомат. обновление страницы (LiveServer)
@@ -210,7 +223,7 @@ const watchFiles = () => {
     // тут просматриваются папки и файлы на изменение
 
     watch('./src/scss/**/*.scss', styles);
-    watch('./src/js/**/*.js', scripts);
+    watch('./src/js/**/*.js', scriptsSlick);
     watch('./src/*.html', htmlInclude);
     watch('./src/html/*.html', htmlInclude);
     watch('./src/img/**.jpg', imgToApp);
@@ -226,7 +239,7 @@ exports.styles = styles;
 exports.watchFiles = watchFiles;
 exports.fileinclude = htmlInclude;
 
-exports.default = series(clean, parallel(htmlInclude, scripts, fonts, resources, imgToApp, svgSprites), fontsStyle, styles, watchFiles);
+exports.default = series(clean, parallel(htmlInclude, /* scripts, */ scriptsSlick, fonts, resources, imgToApp, svgSprites), fontsStyle, styles, watchFiles);
 
 //gulp finaly build
 
@@ -263,32 +276,44 @@ const images = () => {
         .pipe(dest('app/img/icons'))
 }
 
-const scriptsBuild = () => {
-	return src('./src/js/main.js')
-		.pipe(webpackStream({
-				mode: 'development',
-				output: {
-					filename: 'main.js',
-				},
-				module: {
-					rules: [{
-						test: /\.m?js$/,
-						exclude: /(node_modules|bower_components)/,
-						use: {
-							loader: 'babel-loader',
-							options: {
-								presets: ['@babel/preset-env']
-							}
-						}
-					}]
-				},
-			}))
-			.on('error', function (err) {
-				console.error('WEBPACK ERROR', err);
-				this.emit('end'); // Don't stop the rest of the task
-			})
-		.pipe(uglify().on("error", notify.onError()))
-		.pipe(dest('./app/js'))
+// const scriptsBuild = () => {
+// 	return src('./src/js/main.js')
+// 		.pipe(webpackStream({
+// 				mode: 'development',
+// 				output: {
+// 					filename: 'main.js',
+// 				},
+// 				module: {
+// 					rules: [{
+// 						test: /\.m?js$/,
+// 						exclude: /(node_modules|bower_components)/,
+// 						use: {
+// 							loader: 'babel-loader',
+// 							options: {
+// 								presets: ['@babel/preset-env']
+// 							}
+// 						}
+// 					}]
+// 				},
+// 			}))
+// 			.on('error', function (err) {
+// 				console.error('WEBPACK ERROR', err);
+// 				this.emit('end'); // Don't stop the rest of the task
+// 			})
+// 		.pipe(uglify().on("error", notify.onError()))
+// 		.pipe(dest('./app/js'))
+// }
+
+function scriptsSlick() {
+    return src([
+        'node_modules/jquery/src/jquery.js',
+        'node_modules/slick-carousel/slick/slick.js',
+        'src/js/main.js'
+    ])
+    .pipe(concat('main.min.js'))
+    .pipe(uglify())
+    .pipe(dest('app/js'))
+    .pipe(browserSync.stream())
 }
 
 const stylesBuild = () => {
@@ -315,5 +340,5 @@ const htmlMinify = () => {
         .pipe(dest('app'))
 }
 
-exports.build = series(clean, parallel(htmlInclude, scriptsBuild, fonts, resources, imgToApp, svgSprites), stylesBuild, images, htmlMinify, fontsStyle);
+exports.build = series(clean, parallel(htmlInclude, /* scriptsBuild, */ scriptsSlick, fonts, resources, imgToApp, svgSprites), stylesBuild, images, htmlMinify, fontsStyle);
 
