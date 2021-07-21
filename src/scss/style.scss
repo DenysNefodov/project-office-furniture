@@ -326,7 +326,7 @@
 
 .new-collection {
     text-align: center;
-    padding: 45px 0 105px;
+    padding: 45px 0 35px;
     &__title {
         color: $title;
         font-size: 35px;
@@ -357,6 +357,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 30px;
+    padding-bottom: 70px;
     &__item {
         position: relative;
         &:hover {
@@ -382,6 +383,7 @@
         justify-content: center;
         opacity: 0;
         transition: ease-in-out .4s;
+        text-align: center;
     }
     &__info-title {
         font-size: 20px;
@@ -711,5 +713,16 @@
         border-radius: 4px;
         background-color: $title;
         margin-top: -2px;
+    }
+}
+
+.partners {
+    padding: 16px 0 60px;
+    &__items {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    &__item {
+        margin: 0 auto;
     }
 }
