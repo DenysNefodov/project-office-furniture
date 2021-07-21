@@ -30,12 +30,12 @@ body {
 .container {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 15px;
 }
 
 .container-fluid {
     max-width: 1920px;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 .slick-dots {
@@ -58,5 +58,24 @@ body {
         button {
             background-color: #FFEF35;
         }
+    }
+}
+
+.info-email {
+    font-weight: 600;
+    font-size: 14px;
+    color: $title;
+    margin-bottom: 22px;
+    padding-left: 30px;
+    display: block;
+    position: relative;
+    &::before {
+        content: '';
+        background-image: url(../img/icons/icon_envelope.svg);
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 16px;
+        height: 12px;
     }
 }
