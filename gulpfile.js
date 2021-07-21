@@ -203,7 +203,8 @@ function scriptsSlick() {
     return src([
         /* 'node_modules/jquery/src/jquery.js',
         'node_modules/slick-carousel/slick/slick.js',
-        'node_modules/mixitup/dist/mixitup.js' */
+        'node_modules/mixitup/dist/mixitup.js',
+        'node_module/@fancyapps/dist/jquery.fancybox.js' */
         'src/js/main.js'
     ])
     .pipe(concat('main.min.js'))
