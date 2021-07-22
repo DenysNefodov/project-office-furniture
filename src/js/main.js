@@ -21,6 +21,13 @@ $(function () {
         arrows:false
     });
 
+    $('.article-slider__box').slick({
+        prevArrow: '<button type="button" class="article-slider__arrow article-slider__arrowleft"><img src="./img/icons/icon_arrow_slide_left.svg" alt="arrow left"></button>',
+        nextArrow: '<button type="button" class="article-slider__arrow article-slider__arrowright"><img src="./img/icons/icon_arrow_slide_right.svg" alt="arrow right"></button>'
+    });
+
+
+
     let mixer = mixitup('.gallery__inner', {
         load: {
             filter: '.category-office-furniture'
