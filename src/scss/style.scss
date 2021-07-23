@@ -529,6 +529,9 @@
         border: 1px solid #FFEF35;
         color: $title;
     }
+    &__item {
+        min-height: 100%;
+    }
     &__items {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
