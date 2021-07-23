@@ -1,4 +1,12 @@
 @media (max-width: 769px) {
+    .footer {
+        &__info {
+            width: 380px;
+        }
+    }
+}
+
+@media (max-width: 769px) {
     .header {
         &__btn {
             display: none;
@@ -16,6 +24,27 @@
     }
     .logo {
         margin: 0;
+    }
+    .footer {
+        &__inner {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &__info {
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        &__info-text {
+            max-width: 100%;
+        }
+        &__menu {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        &__social {
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 }
 
@@ -68,7 +97,25 @@
         }
         &__list-link {
             display: block;
-            padding: 15px 0;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .footer {
+        &__inner {
+            justify-content: space-between;
+        }
+        &__social {
+            margin-left: 0;
+        }
+        &__form {
+            display: block;
+        }
+        &__form-button {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 100%;
         }
     }
 }
