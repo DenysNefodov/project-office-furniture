@@ -18,6 +18,9 @@
         border: none;
         cursor: pointer;
     }
+    &__btn-menu {
+        display: none;
+    }
 }
 
 .logo {
@@ -236,7 +239,7 @@
     background: rgba(#dfdfdf, .5);
     padding: 13px 14px;
     position: relative;
-    z-index: 999;
+    z-index: 10;
     &__list {
         display: flex;
     }
