@@ -119,10 +119,13 @@
             padding-left: 0;
         }
     }
+    .rightside-menu {
+        display: none;
+    }
 
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .header {
         &__btn {
             display: none;
